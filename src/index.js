@@ -3,6 +3,8 @@ import { Router } from 'itty-router'
 import { registerGlobalCommands } from './register'
 import { ValidateRequest } from './validate'
 import { HandleInteractions } from './slashHandlers/handler'
+import { ToS } from '../html/ToS'
+import { PS } from '../html/PS'
 
 const router = Router()
 export default {
@@ -39,6 +41,25 @@ router.get('/register', async (_, env) => {
         console.error(error)
         return sendResponse('Error registering commands', 500)
     }
+})
+router.get('/terms-of-service', async () => {
+    return new Response(ToS, {
+        status: 200,
+        headers: {
+            'Content-Type': 'text/html',
+        },
+    })
+})
+router.get('/privacy-policy', async () => {
+    return new Response(PS, {
+        status: 200,
+        headers: {
+            'Content-Type': 'text/html',
+        },
+    })
+})
+router.get('/*', async () => {
+    return new Response('404 Not Found', { status: 404 })
 })
 
 router.post('/', async (request, env) => {
