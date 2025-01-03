@@ -18,6 +18,7 @@ async function registerCommands(url, token) {
     if (response.ok) {
         return await response.json()
     } else {
+        console.error('Failed to register commands:', await response.text())
         throw new Error('Failed to register commands')
     }
 }

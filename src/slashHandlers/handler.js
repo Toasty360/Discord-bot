@@ -5,6 +5,8 @@ import {
 } from 'discord-interactions'
 import { getInfo } from './animeInfo'
 import getEpisodes from './episodes'
+import { performChaos } from '../util/gameData'
+import { adopt, chaos } from './game'
 export async function HandleInteractions(message, env) {
     switch (message.data.name.toLowerCase()) {
         case 'hi': {
@@ -42,6 +44,22 @@ export async function HandleInteractions(message, env) {
         }
         case 'aniepisodes': {
             return await getEpisodes(message.data.options[0].value)
+        }
+        case 'join': {
+            return sendResponse({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    content: '"Welcome! Use `/adopt` to choose your pet!"',
+                },
+            })
+        }
+        case 'adopt': {
+            return await adopt(message, env)
+        }
+        case 'chaos': {
+            console.log(message)
+
+            return await chaos(message, env)
         }
         default:
             return sendResponse('Returning default')

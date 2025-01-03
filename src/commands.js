@@ -1,5 +1,5 @@
 export const COMMANDS = {
-    Hi: {
+    hi: {
         name: 'hi',
         type: 1,
         description: 'Drop some cuteness on this channel.',
@@ -21,9 +21,9 @@ export const COMMANDS = {
         dm_permission: true,
         options: [
             {
-                name: 'id',
+                name: 'id', // Make sure the option name is lowercase
                 description: 'ID of the Anime',
-                type: 4,
+                type: 4, // Integer
                 required: true,
             },
         ],
@@ -37,12 +37,41 @@ export const COMMANDS = {
         dm_permission: true,
         options: [
             {
-                name: 'id',
+                name: 'id', // Option name in lowercase
                 description: 'ID of the Anime',
-                type: 4,
+                type: 4, // Integer
                 required: true,
             },
         ],
+    },
+    join: {
+        type: 1,
+        name: 'join',
+        contexts: [0, 1, 2],
+        description: 'Join the game',
+        dm_permission: true,
+    },
+    adopt: {
+        type: 1,
+        name: 'adopt', // Ensure the command name is lowercase
+        contexts: [0, 1, 2],
+        description: 'Adopt an animal from the wild',
+        dm_permission: true,
+        options: [
+            {
+                name: 'name', // Option name must be lowercase
+                description: 'Name of the animal',
+                type: 3, // String type
+                required: true,
+            },
+        ],
+    },
+    chaos: {
+        type: 1,
+        name: 'chaos',
+        contexts: [0, 1, 2],
+        description: 'Start a chaos game',
+        dm_permission: true,
     },
     invite: {
         type: 1,
